@@ -1,9 +1,18 @@
-from words import words
 import random
-word=random.choice(words)
-attempts= len(word)
-print(f"You have {2*attempts} number of attempts to guess the word.")
-print("word=", attempts*"_ ")
+
+def load_words():
+    """
+    Returns a list of valid words. Words are strings of lowercase letters.
+    """
+    print("Loading word list from file...")
+    # inFile: file
+    inFile = open("words.txt", 'r')
+    # line: string
+    line = inFile.readline()
+    # wordlist: list of strings
+    wordlist = line.split()
+    print("  ", len(wordlist), "words loaded.")
+    return wordlist
 
 
 def hangman():
@@ -22,9 +31,8 @@ def hangman():
                 print("incorrect guess! You're already losing hehe.")
                 hangman()
                 
+word = random.choice(load_words())
+attempts= len(word)
+print(f"You have {2*attempts} number of attempts to guess the word.")
+print("word=", attempts*"_ ")
 hangman()
-            
-#while 2*attempts==True:
-#    hangman()
-
-        
